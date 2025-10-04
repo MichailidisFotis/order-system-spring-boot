@@ -28,11 +28,11 @@ public class UsersController {
     }
 
 
-    @PostMapping("/create-user")
-    public ResponseEntity<Object> createUser(@RequestBody @Valid  User user){
-
-
-        return ResponseHandler.responseBuilder("User created" , HttpStatus.CREATED , userRepository.createUser(user), true);
-    }
+//    @PostMapping("/create-user")
+//    public ResponseEntity<Object> createUser(@RequestBody @Valid  User user){
+//
+//
+//        return ResponseHandler.responseBuilder("User created" , HttpStatus.CREATED , userRepository.createUser(user), true);
+//    }
 
 }

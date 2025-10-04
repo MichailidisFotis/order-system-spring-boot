@@ -18,6 +18,8 @@ public class ResponseHandler {
         else
             response.put("errors" , responseObject);
 
+        response.put("success" , success);
+
         return new ResponseEntity<>(response, httpStatus);
 
 
