@@ -23,6 +23,10 @@ public class Customer {
     @NotEmpty(message ="Address should not be empty")
     private String address;
 
+    private String dateCreated;
+
+    private String dateModified;
+
 
     public Customer(String id, String firstname, String surname, String email , String address) {
         this.id = id;
@@ -35,9 +39,6 @@ public class Customer {
     public Customer() {
         super();
     }
-
-
-
 
     public String getId() {
         return id;
@@ -79,6 +80,23 @@ public class Customer {
         this.address = address;
     }
 
+
+    public String getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public String getDateModified() {
+        return dateModified;
+    }
+
+    public void setDateModified(String dateModified) {
+        this.dateModified = dateModified;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -87,6 +105,8 @@ public class Customer {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
+                ", dateCreated='" + dateCreated + '\'' +
+                ", dateModified='" + dateModified + '\'' +
                 '}';
     }
 }

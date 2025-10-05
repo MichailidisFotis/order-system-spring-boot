@@ -1,6 +1,7 @@
 package com.example.order_system_spring_boot.components.Customers;
 
 import com.example.order_system_spring_boot.components.users.User;
+import com.example.order_system_spring_boot.helpers.DatesHelper;
 import com.example.order_system_spring_boot.helpers.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
+import javax.xml.crypto.Data;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,16 +24,23 @@ public class CustomerService implements CustomerRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    DatesHelper datesHelper =  new DatesHelper();
+
+
+
     @Override
     public ResponseEntity<Object> createCustomer(Customer customer) {
 
-        String insertQuery = "insert into customers(id, firstname, surname, email , address) values (?,?,?,?,?)";
+        String insertQuery = "insert into customers(id, firstname, surname, email , address, dateCreated, dateModified) values (?,?,?,?,?,?, null)";
 
         UUID randomUuid = UUID.randomUUID();
 
         customer.setId(randomUuid.toString());
 
-        jdbcTemplate.update(insertQuery, customer.getId(), customer.getFirstname(), customer.getSurname(), customer.getEmail(), customer.getAddress());
+        String dateCreated = datesHelper.getDateNowTS();
+        customer.setDateCreated(dateCreated);
+
+        jdbcTemplate.update(insertQuery, customer.getId(), customer.getFirstname(), customer.getSurname(), customer.getEmail(), customer.getAddress(), customer.getDateCreated());
 
         return ResponseHandler.responseBuilder("Customer Created!!", HttpStatus.CREATED, customer, true);
     }
@@ -124,10 +133,11 @@ public class CustomerService implements CustomerRepository {
                 :customerInDb.getEmail();
 
 
-        String query = "UPDATE CUSTOMERS SET firstname=?, surname=? , address=? , email=? WHERE id=?";
+        String query = "UPDATE CUSTOMERS SET firstname=?, surname=? , address=? , email=?, dateModified =? WHERE id=?";
 
+        String dateModified = datesHelper.getDateNowTS();
 
-        jdbcTemplate.update(query, firstname , surname , address , email , id);
+        jdbcTemplate.update(query, firstname , surname , address , email, dateModified , id);
 
         return ResponseHandler.responseBuilder("Customer Updated!!!", HttpStatus.OK, customerInDb, true);
 
