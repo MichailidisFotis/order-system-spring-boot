@@ -14,6 +14,7 @@ public class FilterConfigs {
         FilterRegistrationBean<RequireLogin> registration = new FilterRegistrationBean<>();
         registration.setFilter(filter);
         registration.addUrlPatterns("/users/*");
+        registration.addUrlPatterns("/customers/*");
         registration.setOrder(1);
         return registration;
     }

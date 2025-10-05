@@ -18,21 +18,14 @@ public class UsersController {
     UserRepository userRepository;
 
 
-    @GetMapping("")
+    @GetMapping({"","/"})
     public ResponseEntity<Object> getAll(){
 
         List<User> users =  new ArrayList<User>();
-
 
         return ResponseHandler.responseBuilder("Users Retrieved" , HttpStatus.OK , userRepository.getAll(), true);
     }
 
 
-//    @PostMapping("/create-user")
-//    public ResponseEntity<Object> createUser(@RequestBody @Valid  User user){
-//
-//
-//        return ResponseHandler.responseBuilder("User created" , HttpStatus.CREATED , userRepository.createUser(user), true);
-//    }
 
 }
