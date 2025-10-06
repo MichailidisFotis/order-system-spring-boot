@@ -1,26 +1,31 @@
 package com.example.order_system_spring_boot.components.Customers;
 
+import com.example.order_system_spring_boot.helpers.ValidationGroups;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
 
-public class Customer {
+
+public class Customer implements ValidationGroups {
+
+
+
 
     private  String id;
 
-    @NotEmpty(message = "Firstname should not be empty")
+    @NotEmpty(message = "Firstname should not be empty" , groups = {OnCreate.class})
     private String firstname;
 
-    @NotEmpty(message = "Surname should not be empty")
+    @NotEmpty(message = "Surname should not be empty" , groups = {OnCreate.class})
     private String surname;
 
-    @NotEmpty(message = "Email should not be empty")
-    @Email(message = "Wrong Email format")
+    @NotEmpty(message = "Email should not be empty", groups = {OnCreate.class})
+    @Email(message = "Wrong Email format", groups = {OnCreate.class, OnUpdate.class})
     private String email;
 
 
-    @NotEmpty(message ="Address should not be empty")
+    @NotEmpty(message ="Address should not be empty", groups = {OnCreate.class})
     private String address;
 
     private String dateCreated;
@@ -37,7 +42,7 @@ public class Customer {
     }
 
     public Customer() {
-        super();
+//            super();
     }
 
     public String getId() {

@@ -128,7 +128,7 @@ public class CustomerService implements CustomerRepository {
                 ?customer.getAddress()
                 :customerInDb.getAddress();
 
-        String email = (customer.getEmail()!=null && !customer.getAddress().isBlank())
+        String email = (customer.getEmail()!=null && !customer.getEmail().isBlank())
                 ?customer.getEmail()
                 :customerInDb.getEmail();
 

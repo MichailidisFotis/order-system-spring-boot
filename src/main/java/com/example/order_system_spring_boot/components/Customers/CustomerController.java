@@ -5,6 +5,7 @@ import org.hibernate.type.descriptor.java.ObjectJavaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,15 +17,13 @@ public class CustomerController {
 
 
     @PostMapping({"/", ""})
-    public ResponseEntity<Object> createCustomer(@RequestBody @Valid Customer customer) {
-
+    public ResponseEntity<Object> createCustomer(@RequestBody @Validated(Customer.OnUpdate.class) Customer customer) {
         return customerRepository.createCustomer(customer);
     }
 
 
     @GetMapping({"/", ""})
     public ResponseEntity<Object> getAll() {
-
         return customerRepository.getAll();
     }
 
@@ -34,7 +33,7 @@ public class CustomerController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Object> updateCustomer(@PathVariable String id, @RequestBody Customer customer) {
+    public ResponseEntity<Object> updateCustomer(@PathVariable String id, @RequestBody @Validated(Customer.OnUpdate.class) Customer customer) {
         return customerRepository.updateCustomer(customer, id);
     }
 
@@ -42,7 +41,6 @@ public class CustomerController {
     public ResponseEntity<Object> deleteCustomer(@PathVariable String id) {
         return customerRepository.delete(id);
     }
-
 
 
 }

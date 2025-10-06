@@ -1,29 +1,30 @@
 package com.example.order_system_spring_boot.components.users;
 
+import com.example.order_system_spring_boot.helpers.ValidationGroups;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 
-public class User {
+public class User implements ValidationGroups {
     private String id;
 
-    @NotEmpty(message="Firstname is not allowed to be empty")
+    @NotEmpty(message="Firstname is not allowed to be empty" , groups ={OnCreate.class})
     private String firstname;
 
-    @NotEmpty(message="Surname is not allowed to be empty")
+    @NotEmpty(message="Surname is not allowed to be empty", groups ={OnCreate.class})
     private String surname;
 
-    @NotEmpty(message="Email is not allowed to be empty")
-    @Email(message ="Incorrect format")
+    @NotEmpty(message="Email is not allowed to be empty", groups ={OnCreate.class})
+    @Email(message ="Incorrect format" , groups ={OnCreate.class , OnUpdate.class})
     private String email;
 
-    @NotEmpty(message="Password is not allowed to be empty")
+    @NotEmpty(message="Password is not allowed to be empty", groups ={OnCreate.class})
     private String password;
 
 
     public User() {
-        super();
+
     }
 
     public User(String id, String firstname, String surname, String email, String password) {

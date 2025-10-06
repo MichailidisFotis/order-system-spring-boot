@@ -1,8 +1,11 @@
 package com.example.order_system_spring_boot.components.users;
 
 
+import com.example.order_system_spring_boot.helpers.ResponseHandler;
 import org.hibernate.tool.schema.spi.SqlScriptException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -20,26 +23,13 @@ public class UserService implements UserRepository {
     JdbcTemplate jdbcTemplate;
 
 
-//    @Override
-//    public Object createUser(User user) throws SqlScriptException {
-//
-//        String insertQuery = "insert into users(id, firstname, surname, email , password) values (?,?,?,?,?)";
-//
-//        UUID randomUuid = UUID.randomUUID();
-//
-//        user.setId(randomUuid.toString());
-//
-//        jdbcTemplate.update(insertQuery,user.getId(),user.getFirstname(),user.getSurname(),user.getEmail() , user.getPassword());
-//
-//        return  user;
-//    }
+
 
     @Override
-    public List<User> getAll() {
+    public ResponseEntity<Object> getAll() {
 
         List<User> users = jdbcTemplate.query("SELECT * FROM users", new BeanPropertyRowMapper<User>(User.class));
 
-
-        return users;
+        return ResponseHandler.responseBuilder("Users retrieved", HttpStatus.OK, users, true);
     }
 }

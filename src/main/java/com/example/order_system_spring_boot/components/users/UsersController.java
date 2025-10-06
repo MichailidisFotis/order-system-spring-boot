@@ -19,11 +19,9 @@ public class UsersController {
 
 
     @GetMapping({"","/"})
-    public ResponseEntity<Object> getAll(){
+    public ResponseEntity<Object> getAll() {
 
-        List<User> users =  new ArrayList<User>();
-
-        return ResponseHandler.responseBuilder("Users Retrieved" , HttpStatus.OK , userRepository.getAll(), true);
+        return userRepository.getAll();
     }
 
 
