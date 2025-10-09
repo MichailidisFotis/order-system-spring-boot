@@ -16,6 +16,7 @@ public class FilterConfigs {
         registration.addUrlPatterns("/users/*");
         registration.addUrlPatterns("/customers/*");
         registration.addUrlPatterns("/categories/*");
+        registration.addUrlPatterns("/products/*");
         registration.setOrder(1);
         return registration;
     }

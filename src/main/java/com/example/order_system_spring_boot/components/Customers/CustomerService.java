@@ -70,7 +70,7 @@ public class CustomerService implements CustomerRepository {
                 new BeanPropertyRowMapper<Customer>(Customer.class));
 
         if (customers.isEmpty())
-            return ResponseHandler.responseBuilder("Customer not found", HttpStatus.NOT_FOUND, customers, true);
+            return ResponseHandler.responseBuilder("Customer not found", HttpStatus.NOT_FOUND, null, false);
 
         return ResponseHandler.responseBuilder("Customer retrieved", HttpStatus.OK, customers, true);
 
@@ -88,7 +88,7 @@ public class CustomerService implements CustomerRepository {
                 new BeanPropertyRowMapper<Customer>(Customer.class));
 
         if (customers.isEmpty())
-            return ResponseHandler.responseBuilder("Customer not found", HttpStatus.NOT_FOUND, customers, true);
+            return ResponseHandler.responseBuilder("Customer not found", HttpStatus.NOT_FOUND, null, false);
 
 
         jdbcTemplate.update("DELETE FROM CUSTOMERS WHERE id=? ", customers.get(0).getId());
