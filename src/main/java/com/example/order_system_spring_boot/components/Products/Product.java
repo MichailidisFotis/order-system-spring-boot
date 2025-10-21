@@ -93,4 +93,18 @@ public class Product implements ValidationGroups {
     public void setDateModified(String dateModified) {
         this.dateModified = dateModified;
     }
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", brand='" + brand + '\'' +
+                ", category_id='" + category_id + '\'' +
+                ", dateCreated='" + dateCreated + '\'' +
+                ", dateModified='" + dateModified + '\'' +
+                '}';
+    }
 }
