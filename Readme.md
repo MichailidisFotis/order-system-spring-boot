@@ -417,10 +417,10 @@ DELETE /orders/{order_id}
 
 ### Prerequisites
 
-- Java 11 or higher
-- Maven or Gradle
+- Java 21
+- Maven
 - Spring Boot
-- Database (PostgreSQL, MySQL, or H2)
+
 
 ### Installation
 
@@ -437,14 +437,6 @@ DELETE /orders/{order_id}
 
 4. The API will be available at `http://localhost:8080`
 
-### Import Postman Collection
-
-1. Open Postman
-2. Click **Import**
-3. Select the `Java Spring Boot.postman_collection.json` file
-4. All endpoints will be available in your Postman workspace
-
----
 
 ## Usage Examples
 
