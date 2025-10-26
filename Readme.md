@@ -491,11 +491,3 @@ DELETE /orders/{order_id}
 - Products must be associated with a valid category
 
 ---
-
-## License
-
-This project is licensed under the MIT License.
-
-## Contact
-
-For questions or support, please contact the development team.
