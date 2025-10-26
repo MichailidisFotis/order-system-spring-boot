@@ -26,12 +26,32 @@ public class OrdersController {
         return ordersRepository.getAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getById(@PathVariable String id) {
+        return ordersRepository.getById(id);
+    }
 
 
+    @GetMapping("/get-order-products/{id}")
+    public ResponseEntity<Object> getOrderProducts(@PathVariable String id) {
+        return ordersRepository.getOrderProducts(id);
+    }
+
+    @GetMapping("/get-order-by-state/{state}")
+    public ResponseEntity<Object> getByState(@PathVariable String state) {
+        return ordersRepository.getByState(state);
+    }
 
 
+    @PatchMapping("/change-state/{id}")
+    public ResponseEntity<Object> changeState(@PathVariable String id){
+        return ordersRepository.changeState(id);
+    }
 
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable String id){
+        return ordersRepository.delete(id);
+    }
 
 }

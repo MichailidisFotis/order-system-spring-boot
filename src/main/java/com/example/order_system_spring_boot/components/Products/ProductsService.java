@@ -30,7 +30,7 @@ public class ProductsService implements ProductsRepository {
     @Override
     public ResponseEntity<Object> createProduct(Product product) {
 
-        String categoryId = product.getCategory_id().isEmpty()
+        String categoryId = !product.getCategory_id().isEmpty()
                 ? product.getCategory_id() : null;
         System.out.print("Category id " + categoryId);
 
@@ -43,6 +43,7 @@ public class ProductsService implements ProductsRepository {
                 }
             }, new BeanPropertyRowMapper<Category>(Category.class));
 
+            System.out.print("Categories:"+categories);
 
             if (categories.isEmpty())
                 return ResponseHandler.responseBuilder("Wrong category ID", HttpStatus.NOT_FOUND, null, false);

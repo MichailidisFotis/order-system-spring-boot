@@ -3,7 +3,9 @@ package com.example.order_system_spring_boot.components.Orders;
 import com.example.order_system_spring_boot.helpers.ValidationGroups;
 import jakarta.validation.constraints.NotEmpty;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Order implements ValidationGroups {
     private String id;
@@ -16,7 +18,7 @@ public class Order implements ValidationGroups {
     private String customer_id;
 
 
-    private String status;
+    private String state;
 
     @NotEmpty(message = "Payment method should not be empty" , groups = {OnCreate.class})
     private String payment_method;
@@ -27,13 +29,13 @@ public class Order implements ValidationGroups {
 
 
     @NotEmpty(message = "Products should not be empty" , groups = {OnCreate.class})
-    private OrdersProducts [] products;
+    private List<OrdersProducts> products;
 
-    public Order(String id, Double price, String customer_id, String status, String payment_method, String dateCreated, String dateModified , OrdersProducts [] products) {
+    public Order(String id, Double price, String customer_id, String state, String payment_method, String dateCreated, String dateModified ,  List<OrdersProducts>products) {
         this.id = id;
         this.price = price;
         this.customer_id = customer_id;
-        this.status = status;
+        this.state = state;
         this.payment_method = payment_method;
         this.dateCreated = dateCreated;
         this.dateModified = dateModified;
@@ -67,12 +69,12 @@ public class Order implements ValidationGroups {
         this.customer_id = customer_id;
     }
 
-    public String getStatus() {
-        return status;
+    public String getState() {
+        return state;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getPayment_method() {
@@ -99,11 +101,11 @@ public class Order implements ValidationGroups {
         this.dateModified = dateModified;
     }
 
-    public OrdersProducts[] getProducts() {
+    public List<OrdersProducts> getProducts() {
         return products;
     }
 
-    public void setProducts(OrdersProducts[] products) {
+    public void setProducts(List<OrdersProducts> products) {
         this.products = products;
     }
 
@@ -113,11 +115,11 @@ public class Order implements ValidationGroups {
                 "id='" + id + '\'' +
                 ", price=" + price +
                 ", customer_id='" + customer_id + '\'' +
-                ", status='" + status + '\'' +
+                ", state='" + state + '\'' +
                 ", payment_method='" + payment_method + '\'' +
                 ", dateCreated='" + dateCreated + '\'' +
                 ", dateModified='" + dateModified + '\'' +
-                ", products=" + Arrays.toString(products) +
+                ", products=" + products +
                 '}';
     }
 }
