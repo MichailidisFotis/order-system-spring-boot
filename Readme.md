@@ -430,10 +430,6 @@ DELETE /orders/{order_id}
    ```bash
    mvn spring-boot:run
    ```
-   or
-   ```bash
-   ./gradlew bootRun
-   ```
 
 4. The API will be available at `http://localhost:8080`
 
